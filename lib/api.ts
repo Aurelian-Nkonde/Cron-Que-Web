@@ -121,3 +121,10 @@ export function deleteLike(id: string, token: string): Promise<void> {
 export function getNotifications(token: string): Promise<Notification[]> {
   return request<Notification[]>("/api/notifications", { token });
 }
+
+export function markNotificationAsRead(id: string, token: string): Promise<Notification> {
+  return request<Notification>(`/api/notifications/read?id=${id}`, {
+    method: "PATCH",
+    token,
+  });
+}

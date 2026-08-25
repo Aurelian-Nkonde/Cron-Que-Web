@@ -1,0 +1,38 @@
+"use client";
+
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/lib/auth-context";
+import { Button } from "@/components/ui/button";
+
+export function NavBar() {
+  const { user, logout } = useAuth();
+  const router = useRouter();
+
+  function handleLogout() {
+    logout();
+    router.push("/login");
+  }
+
+  return (
+    <nav className="flex items-center justify-between border-b px-6 py-3">
+      <div className="flex items-center gap-4 text-sm font-medium">
+        <Link href="/items">Items</Link>
+        <Link href="/notifications">Notifications</Link>
+        <Link href="/jobs">Jobs</Link>
+      </div>
+      <div className="flex items-center gap-3 text-sm">
+        {user ? (
+          <>
+            <span className="text-muted-foreground">{user.name}</span>
+            <Button variant="outline" size="sm" onClick={handleLogout}>
+              Logout
+            </Button>
+          </>
+        ) : (
+          <Link href="/login">Login</Link>
+        )}
+      </div>
+    </nav>
+  );
+}

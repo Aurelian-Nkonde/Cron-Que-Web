@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState, type FormEvent } from "react";
+import { createContext, useEffect, useState, type FormEvent } from "react";
 import { AuthGuard } from "@/components/auth-guard";
 import { ItemThumbnail } from "@/components/item-thumbnail";
 import { useAuth } from "@/lib/auth-context";
